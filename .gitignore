@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+seen.json
+issues.json
+config.json
+.env

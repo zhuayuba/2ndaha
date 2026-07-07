@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -H \"User-Agent: inspiration-bot/1.0\" \"https://old.reddit.com/r/DepthHub/top/.json?t=week&limit=15\")",
+      "Bash(python3 -c ' *)",
+      "WebSearch",
+      "WebFetch(domain:www.douban.com)",
+      "WebFetch(domain:thunderdungeon.com)",
+      "WebFetch(domain:knowledgelover.com)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -H \"User-Agent: Mozilla/5.0\" --max-time 10 \"https://kottke.org/rss\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -H \"User-Agent: Mozilla/5.0\" --max-time 10 \"https://www.themarginalian.org/feed/\")",
+      "Bash(curl -s -H \"User-Agent: Mozilla/5.0\" --max-time 10 \"https://nowiknow.com/feed/\")",
+      "WebFetch(domain:www.raptitude.com)",
+      "Bash(pip3 install *)",
+      "Bash(chmod +x *)",
+      "Bash(git init *)",
+      "Bash(git checkout *)",
+      "Bash(rm -f \"/Users/linxiao/Desktop/project/灵感漫游日志/二手灵感/seen.json\" \"/Users/linxiao/Desktop/project/灵感漫游日志/二手灵感/issues.json\")",
+      "Bash(python3 curator.py)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://zhuayuba.github.io/ershou-dunwu/\")",
+      "WebFetch(domain:zhuayuba.github.io)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
+    ]
+  }
+}
