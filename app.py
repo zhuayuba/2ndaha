@@ -330,7 +330,8 @@ def generate_issues(num_issues: int = 3, posts_per_issue: int = 2):
 
     # 水管 1：RSS
     print("\n📡 水管 1：RSS 抓取...")
-    rss_posts = fetch_all_feeds(cfg["feeds"]["sources"])
+    sources = cfg.get("feeds", {}).get("sources", DEFAULT_FEEDS)
+    rss_posts = fetch_all_feeds(sources)
 
     # 水管 2：主动搜索（DuckDuckGo，免费，无需 API Key）
     print("\n🔍 水管 2：主动搜索...")
