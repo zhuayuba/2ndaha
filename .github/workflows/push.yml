@@ -1,0 +1,42 @@
+name: 每日推送
+
+on:
+  schedule:
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 安装依赖
+        run: pip install feedparser requests openai ddgs
+
+      - name: 执行推送
+        run: python app.py push
+        env:
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_MODEL: deepseek-chat
+          LLM_BASE_URL: https://api.deepseek.com/v1
+
+      - name: 保存状态
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          touch issues.json seen.json 2>/dev/null
+          git add docs/index.html issues.json seen.json -f 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "没有变更"
+          else
+            git commit -m "📝 每日推送 $(date +%Y-%m-%d)"
+            git push
+          fi
