@@ -30,7 +30,8 @@
       "Bash(pip3 uninstall *)",
       "Bash(python3 -c \"import json,sys; issues=json.load\\(sys.stdin\\); [print\\(f'Vol.{i[\\\\\"number\\\\\"]}: sent={i[\\\\\"sent\\\\\"]}'\\) for i in issues]\")",
       "Bash(curl -s \"https://zhuayuba.github.io/ershou-dunwu/\")",
-      "Bash(curl -s \"https://raw.githubusercontent.com/zhuayuba/ershou-dunwu/main/docs/index.html\")"
+      "Bash(curl -s \"https://raw.githubusercontent.com/zhuayuba/ershou-dunwu/main/docs/index.html\")",
+      "Read(//Users/linxiao/Desktop/project/**)"
     ]
   }
 }
