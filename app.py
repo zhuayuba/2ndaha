@@ -141,11 +141,14 @@ SEARCH_QUERIES = [
 
 
 def search_articles(num_results: int = 3) -> list[dict]:
-    """用 DuckDuckGo 免费搜索不限时间的视角独特文章（不需要 API Key）"""
+    """用 DuckDuckGo 免费搜索不限时间的视角独特文章（不需要 API Key）。失败时静默跳过。"""
     try:
         from ddgs import DDGS
-    except ImportError:
-        print("  ⚠️ 未安装 ddgs 库，跳过搜索通道")
+    except ImportError as e:
+        print(f"  ⚠️ 搜索库不可用 ({e})，跳过搜索通道")
+        return []
+    except Exception as e:
+        print(f"  ⚠️ 搜索通道初始化失败 ({e})，跳过")
         return []
 
     all_posts = []
