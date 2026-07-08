@@ -20,7 +20,6 @@ from collections import Counter
 import feedparser
 import requests
 from openai import OpenAI
-from flask import Flask
 
 # ── 路径 ──────────────────────────────────────────
 BASE_DIR = Path(__file__).parent
@@ -29,7 +28,7 @@ SEEN_PATH = BASE_DIR / "seen.json"
 ISSUES_PATH = BASE_DIR / "issues.json"
 HTML_PATH = BASE_DIR / "docs" / "index.html"
 
-app = Flask(__name__)
+# Flask 懒加载（push 模式不需要）
 
 # ── 配置 ──────────────────────────────────────────
 
@@ -669,48 +668,47 @@ def git_commit_and_push():
 
 # ── Flask 接口 ────────────────────────────────────
 
-@app.route("/push", methods=["POST"])
-def handle_push():
-    """cron-job.org 每天触发这个接口"""
-    print(f"\n{'='*50}")
-    print(f"⏰ 推送触发: {datetime.now().isoformat()}")
-    print(f"{'='*50}")
+# ── Flask 接口（仅 serve 模式使用）─────────────────
 
-    issues = load_issues()
-    unsent_count = sum(1 for i in issues if not i["sent"])
-    print(f"📦 当前库存: {unsent_count} 期")
+def create_flask_app():
+    from flask import Flask
+    app = Flask(__name__)
 
-    # 库存不足 → 触发工厂
-    if unsent_count < 1:
-        print("🔧 库存不足，触发生成...")
+    @app.route("/push", methods=["POST"])
+    def handle_push():
+        print(f"\n{'='*50}")
+        print(f"⏰ 推送触发: {datetime.now().isoformat()}")
+        print(f"{'='*50}")
+        issues = load_issues()
+        unsent_count = sum(1 for i in issues if not i["sent"])
+        print(f"📦 当前库存: {unsent_count} 期")
+        if unsent_count < 1:
+            print("🔧 库存不足，触发生成...")
+            try:
+                generate_issues(num_issues=3, posts_per_issue=2)
+            except Exception as e:
+                print(f"❌ 生成失败: {e}")
+                return {"status": "error", "message": str(e)}, 500
+        success = push_next_issue()
+        if success:
+            unsent = sum(1 for i in load_issues() if not i["sent"])
+            return {"status": "ok", "remaining": unsent}
+        else:
+            return {"status": "error", "message": "推送失败"}, 500
+
+    @app.route("/generate", methods=["POST"])
+    def handle_generate():
         try:
-            generate_issues(num_issues=3, posts_per_issue=2)
+            new_issues = generate_issues(num_issues=3, posts_per_issue=2)
+            return {"status": "ok", "generated": len(new_issues)}
         except Exception as e:
-            print(f"❌ 生成失败: {e}")
             return {"status": "error", "message": str(e)}, 500
 
-    # 推送下一期
-    success = push_next_issue()
-    if success:
-        unsent = sum(1 for i in load_issues() if not i["sent"])
-        return {"status": "ok", "remaining": unsent}
-    else:
-        return {"status": "error", "message": "推送失败"}, 500
+    @app.route("/", methods=["GET"])
+    def handle_root():
+        return {"status": "alive", "project": "二手顿悟"}
 
-
-@app.route("/generate", methods=["POST"])
-def handle_generate():
-    """手动触发工厂模式（调试用）"""
-    try:
-        new_issues = generate_issues(num_issues=3, posts_per_issue=2)
-        return {"status": "ok", "generated": len(new_issues)}
-    except Exception as e:
-        return {"status": "error", "message": str(e)}, 500
-
-
-@app.route("/", methods=["GET"])
-def handle_root():
-    return {"status": "alive", "project": "二手顿悟"}
+    return app
 
 
 # ── 本地命令行模式 ────────────────────────────────
@@ -731,4 +729,4 @@ if __name__ == "__main__":
     else:
         port = int(os.environ.get("PORT", args.port))
         print(f"🚂 二手顿悟 HTTP 服务启动: http://0.0.0.0:{port}")
-        app.run(host="0.0.0.0", port=port)
+        create_flask_app().run(host="0.0.0.0", port=port)

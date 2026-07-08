@@ -31,7 +31,8 @@
       "Bash(python3 -c \"import json,sys; issues=json.load\\(sys.stdin\\); [print\\(f'Vol.{i[\\\\\"number\\\\\"]}: sent={i[\\\\\"sent\\\\\"]}'\\) for i in issues]\")",
       "Bash(curl -s \"https://zhuayuba.github.io/ershou-dunwu/\")",
       "Bash(curl -s \"https://raw.githubusercontent.com/zhuayuba/ershou-dunwu/main/docs/index.html\")",
-      "Read(//Users/linxiao/Desktop/project/**)"
+      "Read(//Users/linxiao/Desktop/project/**)",
+      "Bash(python3 -c \"from app import load_issues; issues=load_issues\\(\\); print\\(f'Total: {len\\(issues\\)}, Unsent: {sum\\(1 for i in issues if not i[\\\\\"sent\\\\\"]\\)}'\\)\")"
     ]
   }
 }
