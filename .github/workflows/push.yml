@@ -20,6 +20,24 @@ jobs:
       - name: 安装依赖
         run: pip install feedparser requests openai ddgs
 
+      - name: 环境检查
+        run: |
+          echo "Python: $(python --version)"
+          echo "PWD: $(pwd)"
+          echo "Files: $(ls -la app.py issues.json 2>/dev/null || echo 'no state files')"
+          python -c "
+          from app import load_config
+          cfg = load_config()
+          for k, v in cfg.items():
+              if k in ('llm','feeds'):
+                  print(f'{k}: present (type={type(v).__name__})')
+              else:
+                  print(f'{k}: {str(v)[:50]}')
+          feeds = cfg.get('feeds', {}).get('sources', {})
+          print(f'Feeds count: {len(feeds)}')
+          print('OK')
+          "
+
       - name: 执行推送
         run: python app.py push
         env:
