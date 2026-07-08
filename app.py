@@ -389,6 +389,7 @@ def push_next_issue() -> bool:
     unsent = [i for i in issues if not i["sent"]]
 
     if not unsent:
+        print("📭 没有待发送的期数")
         return False
 
     issue = unsent[0]
@@ -727,6 +728,12 @@ if __name__ == "__main__":
     if args.command == "generate":
         generate_issues(num_issues=3, posts_per_issue=2)
     elif args.command == "push":
+        # 检查库存，不足则先生成
+        issues = load_issues()
+        unsent = sum(1 for i in issues if not i["sent"])
+        if unsent < 1:
+            print("🔧 库存不足，先生成...")
+            generate_issues(num_issues=3, posts_per_issue=2)
         push_next_issue()
     else:
         port = int(os.environ.get("PORT", args.port))
