@@ -7,102 +7,29 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
-                         "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            line-height: 1.8;
-            color: #2c3e50;
-            background: #fafaf8;
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 48px 24px 80px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 1.8; color: #2c3e50; background: #fafaf8;
+            max-width: 700px; margin: 0 auto; padding: 48px 24px 80px;
         }
-        .site-title {
-            font-size: 2em;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 6px;
-            color: #1a1a1a;
-        }
-        .site-desc {
-            font-size: 1em;
-            color: #999;
-            margin-bottom: 56px;
-        }
-        .issue {
-            margin-bottom: 64px;
-        }
-        .issue-header {
-            display: flex;
-            align-items: baseline;
-            gap: 12px;
-            margin-bottom: 24px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #e8e8e4;
-        }
-        .issue-number {
-            font-weight: 700;
-            font-size: 1em;
-            color: #1a1a1a;
-        }
-        .issue-header time {
-            font-size: 0.85em;
-            color: #bbb;
-        }
-        .entry {
-            margin-bottom: 36px;
-            padding-left: 18px;
-            border-left: 2px solid #e8e8e4;
-        }
-        .entry h3 {
-            font-size: 1.15em;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #1a1a1a;
-            line-height: 1.5;
-        }
-        .entry .body {
-            font-size: 0.95em;
-            color: #444;
-            margin-bottom: 8px;
-            line-height: 1.8;
-        }
-        .entry .comment {
-            font-size: 0.85em;
-            color: #aaa;
-            margin-bottom: 8px;
-            font-style: italic;
-        }
-        .entry .source {
-            font-size: 0.8em;
-            color: #bbb;
-            text-decoration: none;
-            border-bottom: 1px dotted #ddd;
-        }
-        .entry .source:hover {
-            color: #555;
-            border-bottom-color: #999;
-        }
-        footer {
-            margin-top: 80px;
-            padding-top: 24px;
-            border-top: 1px solid #e8e8e4;
-            font-size: 0.8em;
-            color: #ccc;
-            text-align: center;
-        }
-        @media (max-width: 480px) {
-            body { padding: 24px 16px 60px; }
-            .site-title { font-size: 1.6em; }
-            .entry { padding-left: 12px; }
-            .entry h3 { font-size: 1.05em; }
-            .entry .body { font-size: 0.9em; }
-        }
+        .site-title { font-size: 2em; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; color: #1a1a1a; }
+        .site-desc { font-size: 1em; color: #999; margin-bottom: 56px; }
+        .issue { margin-bottom: 64px; }
+        .issue-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 24px; padding-bottom: 10px; border-bottom: 1px solid #e8e8e4; }
+        .issue-number { font-weight: 700; font-size: 1em; color: #1a1a1a; }
+        .issue-header time { font-size: 0.85em; color: #bbb; }
+        .entry { margin-bottom: 36px; padding-left: 18px; border-left: 2px solid #e8e8e4; }
+        .entry h3 { font-size: 1.15em; font-weight: 700; margin-bottom: 8px; color: #1a1a1a; line-height: 1.5; }
+        .entry .body { font-size: 0.95em; color: #444; margin-bottom: 8px; line-height: 1.8; }
+        .entry .comment { font-size: 0.85em; color: #aaa; margin-bottom: 8px; font-style: italic; }
+        .entry .source { font-size: 0.8em; color: #bbb; text-decoration: none; border-bottom: 1px dotted #ddd; }
+        .entry .source:hover { color: #555; border-bottom-color: #999; }
+        footer { margin-top: 80px; padding-top: 24px; border-top: 1px solid #e8e8e4; font-size: 0.8em; color: #ccc; text-align: center; }
+        @media (max-width: 480px) { body { padding: 24px 16px 60px; } .site-title { font-size: 1.6em; } .entry { padding-left: 12px; } .entry h3 { font-size: 1.05em; } .entry .body { font-size: 0.9em; } }
     </style>
 </head>
 <body>
     <h1 class="site-title">🪵 二手顿悟</h1>
     <p class="site-desc">那些值得你停下来想两秒的东西。</p>
-
     
         <section class="issue">
             <header class="issue-header">
@@ -111,57 +38,54 @@
             </header>
             
             <article class="entry">
-                <h3>社交媒体上的「流动自我」不是反品牌，是另一种品牌</h3>
-                <p class="body">我们以为在社交平台上展示多面自我——今天文艺，明天搞钱，后天吐槽——是对「个人品牌」那种单一人设的反叛。但实际它只是品牌策略的升级版：你不再扮演一个固定角色，而是扮演一个「不固定」的角色。你的每一次切换、每一个碎片，都在向观众传递一个更精密的信号：看，我有多真实、多丰富。这依然是表演，只是剧本变成了「没有剧本」。</p>
-                <p class="comment">连反叛都是人设</p>
-                <a href="https://reallifemag.com/who-can-it-be-now/" class="source" target="_blank" rel="noopener">
-                    Real Life Mag
+                <h3>不砍树也能产木材：日本600年前的可持续林业</h3>
+                <p class="body">我们默认木材来自砍树。但日本室町时代发明的daisugi（台杉）技术，通过修剪主干上的枝条让其垂直生长，形成密集的笔直树干，每8-10年可收获一次，而母树存活数百年。这不是环保的妥协，而是对“木材生产必须毁林”这一假设的彻底颠覆——树不是一次性资源，而是可重复收割的活工厂。</p>
+                <p class="comment">重新定义人与树的关系</p>
+                <a href="https://fs.blog/knowledge-project-podcast/bill-gurley/" class="source" target="_blank" rel="noopener">
+                    Farnam Street
                 </a>
             </article>
             <article class="entry">
-                <h3>孤星蜱虫正在让美国人告别牛排</h3>
-                <p class="body">孤星蜱虫不只是叮咬你。它传播的α-半乳糖综合征会让你的免疫系统对红肉产生过敏——吃一口牛排就可能引发严重反应。这不是一个简单的健康威胁，它在攻击一种生活方式：美国的烧烤文化、牛仔神话、中西部家庭聚餐，都建立在「吃肉」这个默认设定上。当你的身体突然拒绝你从小吃到大的食物，你才意识到饮食不只是营养，它是身份。</p>
-                <p class="comment">身体比文化更先叛变</p>
-                <a href="https://longreads.com/2026/07/01/ticks-disease-alpha-gal/" class="source" target="_blank" rel="noopener">
+                <h3>AI接管医院：医疗的Uber时刻</h3>
+                <p class="body">文章说AI正在改变医院，但核心洞察不是技术替代医生，而是医疗服务的底层逻辑正在被重写：就像Uber没有发明出行需求，而是重新分配了供给与信任关系。AI在诊断、分诊、手术规划中扮演的角色，不是“更聪明的工具”，而是让医院从“医生中心制”转向“数据+算法中心制”——这改变了谁有权做决定、谁承担风险。</p>
+                <p class="comment">医疗权力结构的无声转移</p>
+                <a href="https://www.openculture.com/2026/06/how-japan-invented-daisugi-the-ancient-method-of-growing-lumber-without-cutting-down-trees.html" class="source" target="_blank" rel="noopener">
+                    Open Culture
+                </a>
+            </article>
+            <article class="entry">
+                <h3>一位年轻魔术师想建史诗级收藏，他越界了吗？</h3>
+                <p class="body">Rory Feldman被指控欺骗、诈骗和盗窃，但他声称自己是“魔术黑手党”抹黑运动的受害者。这个案例的洞察不在于谁对谁错，而在于魔术收藏这个亚文化圈如何同时存在两种真相：圈内人认为他破坏了“魔术师不揭秘”的古老行规，而他自己认为收藏和分享历史道具是保存艺术。当社群规则与个人野心冲突时，“偷窃”和“保护”的边界由谁定义？</p>
+                <p class="comment">社群规则如何定义道德边界</p>
+                <a href="https://longreads.com/2026/07/03/darwin-galapagos-natural-history/" class="source" target="_blank" rel="noopener">
                     Longreads
                 </a>
             </article>
             <article class="entry">
-                <h3>AI不会让你失业，但会让你永远在线</h3>
-                <p class="body">关于AI和工作的主流讨论都在问「哪些工作会被取代」。但更可能的结果是：AI不会取代你的工作，而是让工作永远无法结束。当AI能24小时生成、回复、优化，人类员工会被迫跟上这个节奏——不是被机器替代，而是被机器拖入一个没有下班时间的循环。真正的危机不是失业，是「无限工作周」。</p>
-                <p class="comment">比失业更可怕的是永不失业</p>
-                <a href="https://www.theatlantic.com/technology/2026/06/ai-agents-jobs-exhaustion/687596/?utm_source=feed" class="source" target="_blank" rel="noopener">
+                <h3>实体媒体消亡的代价：一种悲伤的便利</h3>
+                <p class="body">我们以为数字媒体只是实体媒体的替代品——更轻便、更便宜、更易获取。但实际它不是在替代，而是在抹除。实体媒体有它自己的物理存在感：翻书的声音、唱片封面的触感、磁带转动的仪式感。数字媒体把这一切压缩成无差别的比特流，你得到的是便利，失去的是与物品建立情感关系的可能。当你不再需要为一张专辑腾出书架空间，你也就不再需要为它腾出心理空间。</p>
+                <p class="comment">便利的背面是关系的消失</p>
+                <a href="https://www.theatlantic.com/technology/2026/07/playstation-ends-discs/687770/?utm_source=feed" class="source" target="_blank" rel="noopener">
                     The Atlantic Tech
                 </a>
             </article>
             <article class="entry">
-                <h3>我宁愿得癌症，也不想AI发展这么快</h3>
-                <p class="body">一位作者说：如果AI能治愈癌症，我当然受益。但我仍然希望AI进展慢下来。这不是反科技，而是意识到：AI带来的社会性风险——信息失控、权力集中、人类意义感瓦解——可能比癌症更致命。癌症只杀死个体，而失控的AI可能杀死我们共同生活的世界。</p>
-                <p class="comment">重新定义了AI的风险</p>
-                <a href="https://www.theatlantic.com/technology/2026/06/ai-cancer-progress/687654/?utm_source=feed" class="source" target="_blank" rel="noopener">
-                    The Atlantic Tech
+                <h3>中年危机的改装车：亚裔的另一种英雄叙事</h3>
+                <p class="body">我们一直以为进口改装车文化是《速度与激情》里那种白人/拉丁裔街头飙车族的事。但实际它的核心参与者是亚裔美国人——他们用改装车重新定义了什么叫做英雄。不是肌肉车、不是直线加速，而是用精密机械和工程美学把一辆廉价日本车变成艺术品。这种文化不是对主流汽车文化的低配模仿，而是一种完全不同的价值体系：用技术细节取代蛮力，用精准取代张扬。</p>
+                <p class="comment">重新框定了亚裔的文化身份</p>
+                <a href="https://longreads.com/2026/07/01/corolla-import-car-culture/" class="source" target="_blank" rel="noopener">
+                    Longreads
                 </a>
             </article>
             <article class="entry">
-                <h3>每天只走25英里，然后睡觉</h3>
-                <p class="body">托尔斯泰说：一个要走一千英里的人，必须忘记最终目标，每天早上对自己说——&#x27;今天我要走25英里，然后休息睡觉。&#x27;这比&#x27;大事都是慢慢发生的&#x27;这类陈词滥调有用得多。因为后者暗示你只需耐心等待，而前者告诉你：你需要一个每天都能完成的具体任务，然后心安理得地停下来。不是靠意志力硬撑，而是靠设计一个可持续的节奏。</p>
-                <p class="comment">重新定义了&#x27;坚持&#x27;的运作方式</p>
-                <a href="https://www.raptitude.com/2026/01/cover-your-twenty-five-miles-then-rest-up-and-sleep/" class="source" target="_blank" rel="noopener">
-                    Raptitude
-                </a>
-            </article>
-            <article class="entry">
-                <h3>回避不舒服的对话，就是在黑暗中骑车</h3>
-                <p class="body">在漆黑中骑自行车很难——你看不到障碍物，也保持不了平衡。赛斯·高汀说：当我们选择回避那些让我们不舒服的对话时，我们就是在黑暗中骑车。不是&#x27;沟通很重要&#x27;那种老生常谈，而是：不舒服的对话不是障碍，它们是照亮前路的车灯。你越躲，越摔。</p>
-                <p class="comment">给&#x27;逃避&#x27;一个具体的身体感受</p>
-                <a href="https://seths.blog/2026/07/left-unsaid/" class="source" target="_blank" rel="noopener">
-                    Seth Godin
+                <h3>从零造出能分裂的细胞</h3>
+                <p class="body">科学家首次构建出能生长和分裂的合成细胞——不是修改现有生命，而是用非生命材料从头组装出接近生命的东西。这意味着「生命」可能不是某种神秘物质，而是一套可复制的化学程序。如果细胞可以合成，那「活」与「非活」的边界，可能只是我们还没学会的工艺。</p>
+                <p class="comment">生命不是奇迹，是工艺</p>
+                <a href="https://www.quantamagazine.org/for-the-first-time-a-cell-built-from-scratch-grows-and-divides-20260701/" class="source" target="_blank" rel="noopener">
+                    Quanta Magazine
                 </a>
             </article>
         </section>
-
-    <footer>
-        由机器策展，人工筛选。每天 2 分钟读完，可能花一整天消化。
-    </footer>
+    <footer>由机器策展。每天 2 分钟读完，可能花一整天消化。</footer>
 </body>
 </html>
