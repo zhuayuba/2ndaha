@@ -5,7 +5,7 @@
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PYTHON="$(which python3)"
 SCRIPT_PATH="$SCRIPT_DIR/curator.py"
-PLIST_NAME="com.ershou.c curator"
+PLIST_NAME="com.ershou.curator"
 PLIST_PATH="$HOME/Library/LaunchAgents/$PLIST_NAME.plist"
 
 echo "🪵 二手顿悟 · 定时任务安装"

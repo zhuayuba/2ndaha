@@ -34,11 +34,32 @@ app = Flask(__name__)
 # ── 配置 ──────────────────────────────────────────
 
 def load_config():
-    if not CONFIG_PATH.exists():
-        print("❌ 缺少 config.json")
+    """加载配置。环境变量优先（Railway），config.json 作为本地兜底。"""
+    cfg = {}
+    if CONFIG_PATH.exists():
+        with open(CONFIG_PATH, "r") as f:
+            cfg = json.load(f)
+
+    # 环境变量覆盖（Railway 部署用）
+    env = os.environ
+    if env.get("LARK_WEBHOOK_URL"):
+        cfg["lark_webhook_url"] = env["LARK_WEBHOOK_URL"]
+    if env.get("LLM_API_KEY"):
+        cfg.setdefault("llm", {})
+        cfg["llm"]["api_key"] = env["LLM_API_KEY"]
+        cfg["llm"]["model"] = env.get("LLM_MODEL", cfg["llm"].get("model", "deepseek-chat"))
+        cfg["llm"]["base_url"] = env.get("LLM_BASE_URL", cfg["llm"].get("base_url", "https://api.deepseek.com/v1"))
+    if env.get("SITE_URL"):
+        cfg["site_url"] = env["SITE_URL"]
+
+    if not cfg.get("lark_webhook_url") or "请替换" in cfg.get("lark_webhook_url", ""):
+        print("❌ 缺少 Lark Webhook URL，请在 config.json 或环境变量中配置")
         sys.exit(1)
-    with open(CONFIG_PATH, "r") as f:
-        return json.load(f)
+    if not cfg.get("llm", {}).get("api_key") or "请替换" in cfg["llm"]["api_key"]:
+        print("❌ 缺少 LLM API Key，请在 config.json 或环境变量中配置")
+        sys.exit(1)
+
+    return cfg
 
 cfg = load_config()
 
@@ -708,5 +729,6 @@ if __name__ == "__main__":
     elif args.command == "push":
         push_next_issue()
     else:
-        print(f"🚂 二手顿悟 HTTP 服务启动: http://0.0.0.0:{args.port}")
-        app.run(host="0.0.0.0", port=args.port)
+        port = int(os.environ.get("PORT", args.port))
+        print(f"🚂 二手顿悟 HTTP 服务启动: http://0.0.0.0:{port}")
+        app.run(host="0.0.0.0", port=port)

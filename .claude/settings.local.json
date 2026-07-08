@@ -21,7 +21,16 @@
       "WebFetch(domain:zhuayuba.github.io)",
       "Bash(git add *)",
       "Bash(git commit *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{redirect_url}\" -H \"User-Agent: Mozilla/5.0\" --max-time 10 -L \"https://nautil.us/feed/\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{redirect_url}\" -H \"User-Agent: Mozilla/5.0\" --max-time 10 \"https://theconversation.com/us/science/rss\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -H \"User-Agent: Mozilla/5.0\" --max-time 10 \"https://theconversation.com/us/technology/rss\")",
+      "Bash(python3 app.py generate)",
+      "Bash(python3 app.py push)",
+      "Bash(pip3 uninstall *)",
+      "Bash(python3 -c \"import json,sys; issues=json.load\\(sys.stdin\\); [print\\(f'Vol.{i[\\\\\"number\\\\\"]}: sent={i[\\\\\"sent\\\\\"]}'\\) for i in issues]\")",
+      "Bash(curl -s \"https://zhuayuba.github.io/ershou-dunwu/\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/zhuayuba/ershou-dunwu/main/docs/index.html\")"
     ]
   }
 }
