@@ -31,12 +31,37 @@ HTML_PATH = BASE_DIR / "docs" / "index.html"
 
 # ── 配置 ──────────────────────────────────────────
 
+# 默认 RSS 源（非敏感，硬编码兜底）
+DEFAULT_FEEDS = {
+    "Now I Know": "https://nowiknow.com/feed/",
+    "The Marginalian": "https://www.themarginalian.org/feed/",
+    "Raptitude": "https://www.raptitude.com/feed/",
+    "Seth Godin": "https://seths.blog/feed/",
+    "Farnam Street": "https://fs.blog/feed/",
+    "Aeon": "https://aeon.co/feed.rss",
+    "Longreads": "https://longreads.com/feed/",
+    "Open Culture": "https://www.openculture.com/feed",
+    "Real Life Mag": "https://reallifemag.com/feed/",
+    "The Atlantic Tech": "https://www.theatlantic.com/feed/channel/technology/",
+    "Nautilus": "https://nautil.us/feed/",
+    "Quanta Magazine": "https://www.quantamagazine.org/feed/",
+    "Big Think": "https://bigthink.com/feed/",
+}
+
+
 def load_config():
-    """加载配置。环境变量优先（Railway），config.json 作为本地兜底。"""
-    cfg = {}
+    """加载配置。环境变量优先，config.json 作为本地兜底。"""
+    cfg = {
+        "feeds": {"sources": DEFAULT_FEEDS},
+        "push": {"posts_per_issue": 2},
+    }
     if CONFIG_PATH.exists():
         with open(CONFIG_PATH, "r") as f:
-            cfg = json.load(f)
+            local = json.load(f)
+            cfg.update(local)
+            # 合并 feeds（本地配置可追加 RSS 源）
+            if "feeds" in local and "sources" in local["feeds"]:
+                cfg["feeds"]["sources"] = local["feeds"]["sources"]
 
     # 环境变量覆盖（Railway 部署用）
     env = os.environ
