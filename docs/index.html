@@ -9,29 +9,111 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
             line-height: 1.8; color: #2c3e50; background: #fafaf8;
-            max-width: 700px; margin: 0 auto; padding: 48px 24px 80px;
         }
-        .site-title { font-size: 2em; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; color: #1a1a1a; }
-        .site-desc { font-size: 1em; color: #999; margin-bottom: 56px; }
-        .issue { margin-bottom: 64px; }
-        .issue-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 24px; padding-bottom: 10px; border-bottom: 1px solid #e8e8e4; }
-        .issue-number { font-weight: 700; font-size: 1em; color: #1a1a1a; }
-        .issue-header time { font-size: 0.85em; color: #bbb; }
-        .entry { margin-bottom: 36px; padding-left: 18px; border-left: 2px solid #e8e8e4; }
-        .entry h3 { font-size: 1.15em; font-weight: 700; margin-bottom: 8px; color: #1a1a1a; line-height: 1.5; }
-        .entry .summary { font-size: 0.95em; color: #2c3e50; margin-bottom: 12px; line-height: 1.7; font-weight: 500; background: #f0f0ec; padding: 10px 14px; border-radius: 4px; }
-        .entry .body { font-size: 0.95em; color: #444; margin-bottom: 8px; line-height: 1.8; }
-        .entry .comment { font-size: 0.85em; color: #aaa; margin-bottom: 8px; font-style: italic; }
-        .entry .source { font-size: 0.8em; color: #bbb; text-decoration: none; border-bottom: 1px dotted #ddd; }
+        .layout {
+            display: flex; max-width: 1100px; margin: 0 auto; min-height: 100vh;
+        }
+        .sidebar {
+            width: 200px; flex-shrink: 0; padding: 48px 24px 40px;
+            border-right: 1px solid #e8e8e4; position: sticky; top: 0; height: 100vh;
+            overflow-y: auto; background: #fafaf8;
+        }
+        .sidebar .site-title {
+            font-size: 1.15em; font-weight: 800; letter-spacing: -0.02em;
+            margin-bottom: 6px; color: #1a1a1a;
+        }
+        .sidebar .site-desc {
+            font-size: 0.78em; color: #bbb; margin-bottom: 28px; line-height: 1.5;
+        }
+        .month-list { list-style: none; }
+        .month-list li { margin-bottom: 4px; }
+        .month-list li a {
+            display: block; padding: 5px 8px; border-radius: 4px;
+            font-size: 0.85em; color: #777; text-decoration: none;
+            transition: background 0.15s;
+        }
+        .month-list li a:hover { background: #eee; color: #333; }
+        .month-list li.active a { background: #e8e8e4; color: #1a1a1a; font-weight: 600; }
+        .month-list li a span { font-size: 0.8em; color: #bbb; }
+        .main {
+            flex: 1; padding: 48px 32px 80px; max-width: 720px;
+        }
+        .main .site-title-mobile {
+            display: none; font-size: 1.6em; font-weight: 800;
+            margin-bottom: 6px; color: #1a1a1a;
+        }
+        .month-title {
+            font-size: 1.2em; font-weight: 700; color: #1a1a1a;
+            margin-bottom: 32px; padding-bottom: 8px; border-bottom: 2px solid #e0e0dc;
+        }
+        .issue { margin-bottom: 48px; }
+        .issue-header {
+            display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px;
+            padding-bottom: 8px; border-bottom: 1px solid #e8e8e4;
+        }
+        .issue-number { font-weight: 700; font-size: 0.95em; color: #1a1a1a; }
+        .issue-header time { font-size: 0.8em; color: #bbb; }
+        .entry {
+            margin-bottom: 32px; padding-left: 18px; border-left: 2px solid #e8e8e4;
+        }
+        .entry h3 {
+            font-size: 1.1em; font-weight: 700; margin-bottom: 8px; color: #1a1a1a; line-height: 1.5;
+        }
+        .entry .summary {
+            font-size: 0.9em; color: #2c3e50; margin-bottom: 8px; line-height: 1.7;
+            background: #f2f2ee; padding: 10px 14px; border-radius: 4px;
+        }
+        .body-details { margin-bottom: 8px; }
+        .body-toggle {
+            font-size: 0.85em; color: #888; cursor: pointer;
+            padding: 6px 0; user-select: none;
+        }
+        .body-toggle:hover { color: #555; }
+        .body-details[open] .body-toggle { color: #aaa; }
+        .entry .body {
+            font-size: 0.9em; color: #444; line-height: 1.9; margin-top: 8px;
+            padding: 12px 0;
+        }
+        .entry .comment {
+            font-size: 0.8em; color: #aaa; margin-bottom: 6px; font-style: italic;
+        }
+        .entry .source {
+            font-size: 0.75em; color: #bbb; text-decoration: none; border-bottom: 1px dotted #ddd;
+        }
         .entry .source:hover { color: #555; border-bottom-color: #999; }
-        footer { margin-top: 80px; padding-top: 24px; border-top: 1px solid #e8e8e4; font-size: 0.8em; color: #ccc; text-align: center; }
-        @media (max-width: 480px) { body { padding: 24px 16px 60px; } .site-title { font-size: 1.6em; } .entry { padding-left: 12px; } .entry h3 { font-size: 1.05em; } .entry .body { font-size: 0.9em; } }
+        footer {
+            margin-top: 60px; padding-top: 20px; border-top: 1px solid #e8e8e4;
+            font-size: 0.78em; color: #ccc; text-align: center;
+        }
+        @media (max-width: 768px) {
+            .layout { flex-direction: column; }
+            .sidebar {
+                width: 100%; height: auto; position: static;
+                border-right: none; border-bottom: 1px solid #e8e8e4;
+                padding: 24px 20px 16px;
+            }
+            .sidebar .month-list { display: flex; flex-wrap: wrap; gap: 4px; }
+            .sidebar .month-list li a { font-size: 0.8em; padding: 4px 8px; }
+            .main { padding: 32px 20px 60px; }
+            .main .site-title-mobile { display: none; }
+            .entry { padding-left: 12px; }
+            .entry h3 { font-size: 1em; }
+            .entry .body { font-size: 0.85em; }
+        }
     </style>
 </head>
 <body>
-    <h1 class="site-title">🪵 二手顿悟</h1>
-    <p class="site-desc">那些值得你停下来想两秒的东西。</p>
-    
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="site-title">🪵 二手顿悟</div>
+            <p class="site-desc">那些值得你停下来<br>想两秒的东西。</p>
+            <ul class="month-list"><li class="active"><a href="#month-2026-07">2026年07月 <span>(1期)</span></a></li></ul>
+        </aside>
+        <main class="main">
+            
+    <div class="month-section" id="month-2026-07">
+        <h2 class="month-title">2026年07月</h2>
+        
         <section class="issue">
             <header class="issue-header">
                 <span class="issue-number">Vol.1</span>
@@ -41,13 +123,16 @@
             <article class="entry">
                 <h3>麻醉中大脑仍在学语言</h3>
                 <p class="summary">📌 研究发现，人在全麻状态下，大脑海马体仍能处理复杂语言任务，包括区分词性和预测即将出现的词语。这推翻了意识与认知能力必须同步的常识，表明认知可能独立于意识运行。</p>
-                <p class="body">贝勒医学院的科学家干了一件特别反常识的事：他们给全麻的病人脑袋里插了高精度探针，发现就算人睡得跟死猪一样，大脑还在偷偷干活。以前我们都觉得，麻醉了就是意识没了，认知功能肯定也跟着罢工。但实验啪啪打脸。
+                <details class="body-details">
+                    <summary class="body-toggle">展开阅读</summary>
+                    <div class="body">贝勒医学院的科学家干了一件特别反常识的事：他们给全麻的病人脑袋里插了高精度探针，发现就算人睡得跟死猪一样，大脑还在偷偷干活。以前我们都觉得，麻醉了就是意识没了，认知功能肯定也跟着罢工。但实验啪啪打脸。
 
 他们先给病人放一串重复的嘟嘟声，偶尔插个怪声进去。结果海马体里的神经元居然能精准识别这些异常声音，而且越听越准——这相当于大脑在麻醉状态下还在学习。更绝的是，他们后来直接放短故事，发现大脑能实时区分名词、动词和形容词，甚至能预测下一个词是什么。
 
 这推翻了什么？我们一直以为意识是认知的开关：醒了才能思考，睡了就死机。但实验证明，语言理解、预测这些高级功能，根本不需要你醒着。大脑就像个自动运行的服务器，你关机了它还在后台跑程序。
 
-为什么重要？如果认知可以脱离意识存在，那植物人、深度睡眠者可能还有我们不知道的思维活动。这甚至可能改写我们对意识的定义——意识可能不是认知的源头，而是认知的副产品。</p>
+为什么重要？如果认知可以脱离意识存在，那植物人、深度睡眠者可能还有我们不知道的思维活动。这甚至可能改写我们对意识的定义——意识可能不是认知的源头，而是认知的副产品。</div>
+                </details>
                 <p class="comment">大脑：我还能再学五百年</p>
                 <a href="https://www.sciencedaily.com/releases/2026/06/260624025514.htm" class="source" target="_blank" rel="noopener">
                     Science Daily
@@ -56,19 +141,25 @@
             <article class="entry">
                 <h3>生命不是机器，它有目标</h3>
                 <p class="summary">📌 生物学家提出「生物能动性」理论，认为生命体与机器的本质区别在于拥有内在目标——细胞主动维持自身、生长繁殖，而非被动执行程序。这挑战了将生命视为机械过程的传统观点。</p>
-                <p class="body">几百年来，生物学家一直把生命当机器研究：细胞是零件，DNA是程序，生物反应就是物理化学的机械过程。但最近一群科学家跳出来说：别扯了，生命和机器的根本区别在于——它有目标。
+                <details class="body-details">
+                    <summary class="body-toggle">展开阅读</summary>
+                    <div class="body">几百年来，生物学家一直把生命当机器研究：细胞是零件，DNA是程序，生物反应就是物理化学的机械过程。但最近一群科学家跳出来说：别扯了，生命和机器的根本区别在于——它有目标。
 
 你可能会说，细菌朝食物游过去不就是化学梯度反应吗？但新理论认为，这不是被动反应，而是主动追求。细胞不是在执行程序，而是在努力活下去、长大、生孩子。胚胎发育也不是在运行基因代码，而是在朝着一个完整形态努力。
 
 这听起来有点玄学？其实非常科学。传统生物学之所以回避「目的论」，是因为怕沾上宗教色彩。但复杂系统理论和进化生物学证明，不承认生物有内在目标，你就解释不了为什么癌细胞会「选择」疯狂增殖，为什么胚胎会「坚持」长成特定形状。
 
-这个转变有实际价值：研究癌症时，不再把癌细胞当失控机器，而是看作有「错误目标」的活物；造AI时，要思考机器能否真的拥有目标；甚至重新定义什么才算生命。简单说：生命不是被动的零件组合，而是自带欲望的主动玩家。</p>
+这个转变有实际价值：研究癌症时，不再把癌细胞当失控机器，而是看作有「错误目标」的活物；造AI时，要思考机器能否真的拥有目标；甚至重新定义什么才算生命。简单说：生命不是被动的零件组合，而是自带欲望的主动玩家。</div>
+                </details>
                 <p class="comment">活着本身就是个目标</p>
                 <a href="https://www.quantamagazine.org/is-life-just-different-20260708/" class="source" target="_blank" rel="noopener">
                     Quanta Magazine
                 </a>
             </article>
         </section>
-    <footer>由机器策展。每天 2 分钟读完，可能花一整天消化。</footer>
+    </div>
+            <footer>由机器策展。每天 2 分钟读完，可能花一整天消化。</footer>
+        </main>
+    </div>
 </body>
 </html>
