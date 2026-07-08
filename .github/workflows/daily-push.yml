@@ -19,7 +19,7 @@ jobs:
           python-version: "3.11"
 
       - name: 安装依赖
-        run: pip install feedparser requests openai flask ddgs
+        run: pip install feedparser requests openai ddgs
 
       - name: 推送
         run: python app.py push
@@ -33,6 +33,6 @@ jobs:
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
-          git add docs/index.html issues.json seen.json
+          git add docs/index.html issues.json seen.json -f
           git diff --staged --quiet || git commit -m "📝 每日推送 $(date +%Y-%m-%d)"
           git push

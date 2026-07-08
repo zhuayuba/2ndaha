@@ -12,7 +12,6 @@ import hashlib
 import re
 import html as html_mod
 import random
-import time
 from datetime import datetime
 from pathlib import Path
 from collections import Counter
