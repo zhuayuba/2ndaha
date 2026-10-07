@@ -944,8 +944,8 @@
   },
   {
     "number": 42,
-    "date": "2026-10-02",
-    "sent": false,
+    "date": "2026-10-07",
+    "sent": true,
     "entries": [
       {
         "zh_title": "AI首次在理论物理中做出有意义突破",
